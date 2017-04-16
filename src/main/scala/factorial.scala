@@ -18,6 +18,7 @@ def factorial1(n: Int):Int = {
 
 println(s"The factorial of 7 is ${factorial1(7)}")
 
+//using recursion
 def rfactorial(n: Int): Int = {
   if (n == 1) 1
   n*factorial(n-1)
@@ -25,7 +26,6 @@ def rfactorial(n: Int): Int = {
 println(s"The factorial of 7 is ${rfactorial(7)}")
 
 //using tail-recursion
-
 def factorial(n: Int):Int = {
   def go(n: Int, acc: Int): Int =
     if (n <= 0) acc
