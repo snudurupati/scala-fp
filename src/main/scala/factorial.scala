@@ -36,7 +36,7 @@ def factorial(n: Int):Int = {
 
 println(s"The factorial of 7 is ${factorial(7)}")
 
-//functional style using higher oder function
+//functional style - using higher oder function
 def ffactorial(n: Int): Int = 1 to n reduce(_*_)
 
 println(s"The factorial of 7 is ${ffactorial(7)}")
