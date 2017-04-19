@@ -17,3 +17,10 @@ In layman's terms a pure function is a function with no side effects.
 
 ## How to Run:
 Just open a Scala REPEL and type away... mostly.
+
+##Topics
+1. Referential Transparency
+2. Pure function
+3. Tail-recursion
+4. First-class function
+5. Parametric polymorphism
