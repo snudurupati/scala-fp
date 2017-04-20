@@ -1,13 +1,14 @@
 /**
   * Created by snudurupati on 4/19/2017.
-  * Check if an array is sorted
+  * Checks if an array is sorted
   * takes a comparison function and checks if an array is sorted
   * works for any sort order (ascending or descending) depending on the comparison function (greater or lesser)
   * uses parametric polymorphism
   */
 //
 
-def isSorted[A] (as: Array[A], gt: (A, A) => Boolean): Boolean = {
+def isSorted[@specialized A] (as: Array[A], gt: (A, A) => Boolean): Boolean = {
+  @annotation.tailrec
   def go(prev: Int, curr: Int): Boolean = {
     if (curr < as.length) {
       if (!gt(as(prev), as(curr))) false
