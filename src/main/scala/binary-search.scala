@@ -1,6 +1,6 @@
 /**
   * Created by snudurupati on 4/19/2017.
-  * Binary Search
+  * Binary Search using parametric polymorphism
   */
 
 val l = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
