@@ -35,7 +35,7 @@ object LinkedList {
     case Cons(_, xs) => xs
   }
 
-  def drop[A](l: LinkedList[A], n: Int): LinkedList[A] = l match {
+  def dropn[A](l: LinkedList[A], n: Int): LinkedList[A] = l match {
     case Nil => Nil
     case Cons(_, xs) =>
       @annotation.tailrec
@@ -45,6 +45,39 @@ object LinkedList {
       go(l, 1)
 
   }
+
+  //a simpler drop
+  def drop[A](l: LinkedList[A], n: Int): LinkedList[A] =
+    if (n <= 0) l
+    else l match {
+      case Nil => Nil
+      case Cons(_, t) => drop(t, n-1)
+    }
+
+  def dropWhile[A](l: LinkedList[A])(f: A => Boolean): LinkedList[A] =
+    l match {
+      case Cons(h, t) if f(h) => dropWhile(t)(f)
+      case _ => l
+  }
+
+  def setHead[A](l: LinkedList[A], a:A): LinkedList[A] =
+    l match {
+      case Cons(h, t) => Cons(a, t)
+    }
+
+  def append[A](a1: LinkedList[A], a2: LinkedList[A]): LinkedList[A] =
+    a1 match {
+      case Nil => a2
+      case Cons(h,t) => Cons(h, append(t, a2))
+    }
+
+  //deletes the tail of the list
+  def init[A](l: LinkedList[A]): LinkedList[A] =
+    l match {
+      case Cons(_, Nil) => Nil
+      case Cons(h, t) => Cons(h, init(t))
+    }
+
 
   val example = Cons(1, Cons(2, Cons(3, Nil)))
   val example2 = List(1,2,3)
