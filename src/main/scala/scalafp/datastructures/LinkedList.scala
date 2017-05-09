@@ -78,6 +78,21 @@ object LinkedList {
       case Cons(h, t) => Cons(h, init(t))
     }
 
+  def foldRight[A,B](l: LinkedList[A], z: B)(f: (A, B) => B): B =
+    l match {
+      case Nil => z
+      case Cons(h, t) => f(h, foldRight(t, z)(f))
+    }
+
+  def length[A](l: LinkedList[A]): Int =
+    foldRight(l, 0)((_, y) => 1 + y)
+
+  @annotation.tailrec
+  def foldLeft[A,B](l: LinkedList[A], z: B)(f: (B, A) => B): B =
+    l match {
+      case Nil => z
+      case Cons(h, t) => foldLeft(t, f(z, h))(f)
+    }
 
   val example = Cons(1, Cons(2, Cons(3, Nil)))
   val example2 = List(1,2,3)

@@ -7,8 +7,9 @@ object ListTest {
 
     //return tail
     val n = 4
-    val ll = LinkedList(2, 4, 6, 8, 10, 1, 3, 5, 7, 9)
+    val ll = LinkedList(1, 2, 3, 4, 5)
     //println(s"tail of $ll is ${LinkedList.tail(ll)}")
+    /*
     println(s"removed first $n elements from $ll we get ${LinkedList.drop(ll, n)}")
 
     val lm = LinkedList.dropWhile(ll)(x => x%2 == 0)
@@ -19,6 +20,11 @@ object ListTest {
     println(s"appending $ll and $lm and we get ${LinkedList.append(ll, lm)}")
 
     println(s"removed last element from $ll we get ${LinkedList.init(ll)}")
+    */
+
+    println(s"sum of $ll is ${LinkedList.foldRight(ll, 0)(_ + _)}")
+
+    println(s"sum of $ll is ${LinkedList.foldLeft(ll, 0)(_ + _)}")
   }
 
 }
