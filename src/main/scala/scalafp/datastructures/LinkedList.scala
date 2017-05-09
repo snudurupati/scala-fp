@@ -94,6 +94,28 @@ object LinkedList {
       case Cons(h, t) => foldLeft(t, f(z, h))(f)
     }
 
+  def reverse[A](l: LinkedList[A]): LinkedList[A] = {
+    @annotation.tailrec
+    def go(as: LinkedList[A], acc: LinkedList[A]): LinkedList[A] =
+      as match {
+        case Nil => acc
+        case Cons(h, t) => go(t, Cons(h, acc))
+      }
+    go(l, Nil)
+  }
+
+  def reverse2[A](l: LinkedList[A]): LinkedList[A] =
+    foldLeft(l, LinkedList[A]())((t, h) => Cons(h, t))
+
+  def length2[A](l: LinkedList[A]): Int =
+    foldLeft(l: LinkedList[A], 0)((t, _) => 1 + t)
+
+  def append2[A](as: LinkedList[A], bs: LinkedList[A]): LinkedList[A] =
+    foldLeft(as, bs)((b, a) => Cons(a, b))
+
+  def add1(as: LinkedList[Int]): LinkedList[Int] =
+    foldRight(as, LinkedList[Int]())((h, acc) => Cons(h + 1, acc))
+
   val example = Cons(1, Cons(2, Cons(3, Nil)))
   val example2 = List(1,2,3)
   val total = sum(example)
