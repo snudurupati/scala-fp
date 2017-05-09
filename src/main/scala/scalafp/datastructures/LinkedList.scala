@@ -116,6 +116,28 @@ object LinkedList {
   def add1(as: LinkedList[Int]): LinkedList[Int] =
     foldRight(as, LinkedList[Int]())((h, acc) => Cons(h + 1, acc))
 
+  def dString(dl: LinkedList[Double]): LinkedList[String] =
+    foldRight(dl, LinkedList[String]())((a, b) => Cons(a.toString, b))
+
+  //exclusively recursive map - not stack-safe
+  def map1[A,B](l: LinkedList[A])(f: A => B): LinkedList[B] =
+    l match {
+      case Nil => Nil
+      case Cons(h, t) => Cons(f(h), map1(t)(f))
+    }
+  //map using foldRight - not stack-safe
+  def map[A,B](l: LinkedList[A])(f: A => B): LinkedList[B] =
+    foldRight(l, Nil: LinkedList[B])((a, b) => Cons(f(a), b))
+
+  def filter1[A](l: LinkedList[A])(f: A => Boolean): LinkedList[A] =
+    l match {
+      case Cons(h, t) if f(h) => filter1(t)(f)
+      case _ => l
+    }
+
+  def filter[A](l: LinkedList[A])(f: A => Boolean): LinkedList[A] =
+    foldRight(l, Nil: LinkedList[A])((a, b) => if (f(a)) Cons(a, b) else b)
+
   val example = Cons(1, Cons(2, Cons(3, Nil)))
   val example2 = List(1,2,3)
   val total = sum(example)
